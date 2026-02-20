@@ -125,6 +125,13 @@ void RunBenchmark(AppState& state) {
         totalMinMax += std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     }
     state.benchmarkMinMaxAvg = totalMinMax / 100.0;
+
+    std::cout << "Benchmark Results (Avg):" << std::endl;
+    const char* dataNames[] = { "Sine + Noise", "Brownian Motion", "Impulse Spikes" };
+    std::cout << "Dataset: " << dataNames[state.currentDataType] << std::endl;
+    std::cout << "LTTB: " << state.benchmarkLttbAvg << " us" << std::endl;
+    std::cout << "MinMaxLTTB: " << state.benchmarkMinMaxAvg << " us" << std::endl;
+    std::cout << "Speedup: " << state.benchmarkLttbAvg / state.benchmarkMinMaxAvg << "x" << std::endl;
 }
 
 int main(int, char**) {
@@ -219,7 +226,8 @@ int main(int, char**) {
 
         if (state.benchmarkLttbAvg > 0) {
             ImGui::Separator();
-            ImGui::Text("Benchmark Results (Avg):");
+            const char* dataNames[] = { "Sine + Noise", "Brownian Motion", "Impulse Spikes" };
+            ImGui::Text("Benchmark Results (Avg) [%s]:", dataNames[state.currentDataType]);
             ImGui::Text("LTTB: %.2f us", state.benchmarkLttbAvg);
             ImGui::Text("MinMaxLTTB: %.2f us", state.benchmarkMinMaxAvg);
             double speedup = state.benchmarkLttbAvg / state.benchmarkMinMaxAvg;
