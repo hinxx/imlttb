@@ -2,6 +2,8 @@
 
 This repository contains a C++ benchmarking and visualization tool designed to compare the standard **Largest-Triangle-Three-Buckets (LTTB)** downsampling algorithm against an optimized variation, **MinMaxLTTB**.
 
+See https://github.com/predict-idlab/MinMaxLTTB.
+
 Tested on a machine:
 
         CPU: 16-core AMD Ryzen Threadripper PRO 5955WX s (-MT MCP-)
